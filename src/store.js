@@ -1,3 +1,5 @@
+import { generateCode } from "./codeGenerator";
+
 /**
  * Хранилище состояния приложения
  */
@@ -37,14 +39,14 @@ class Store {
     // Вызываем всех слушателей
     for (const listener of this.listeners) listener();
   }
-
+ 
   /**
    * Добавление новой записи
    */
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }],
+      list: [...this.state.list, { code: generateCode(), title: 'Новая запись', selectedCount: 0 }],
     });
   }
 
@@ -69,6 +71,12 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+          if (item.selected) {
+            item.selectedCount++;
+          }
+        }
+        else {
+          item.selected = false;
         }
         return item;
       }),
