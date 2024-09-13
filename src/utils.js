@@ -26,3 +26,15 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+// Генерация кодов
+export const generateCode = (function () {
+  let counter = 0;
+  return () => ++counter;
+}());  
+
+// Множественное число
+export function pluralize(count, words) {
+  var cases = [2, 0, 1, 1, 1, 2];
+  return count + ' ' + words[ (count % 100 > 4 && count % 100 < 20) ? 2 : cases[ Math.min(count % 10, 5)] ];
+}

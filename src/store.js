@@ -1,4 +1,4 @@
-import { generateCode } from "./codeGenerator";
+import { generateCode } from "./utils";
 
 /**
  * Хранилище состояния приложения
