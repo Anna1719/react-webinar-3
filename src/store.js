@@ -6,6 +6,7 @@ import { generateCode } from "./utils";
 class Store {
   constructor(initState = {}) {
     this.state = initState;
+    this.initLength = initState.list.length;
     this.listeners = []; // Слушатели изменений состояния
   }
 
@@ -46,7 +47,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: generateCode(), title: 'Новая запись', selectedCount: 0 }],
+      list: [...this.state.list, { code: this.initLength + generateCode(), title: 'Новая запись', selectedCount: 0 }],
     });
   }
 
