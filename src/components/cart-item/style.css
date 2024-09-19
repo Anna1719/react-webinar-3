@@ -1,0 +1,36 @@
+.Cart_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    border-top: 1px dashed #cccccc;
+    border-bottom: 1px dashed #cccccc;
+} 
+
+.Item_code {
+    padding: 20px 25px;
+}
+
+.Item_name {
+    width: 100%;
+    padding: 20px 5px;
+}
+  
+.Item_price{
+    text-align: right;
+    white-space: nowrap;
+    padding: 20px 25px;
+}
+
+.Item_count {
+    width: 20%;
+    text-align: right;
+    white-space: nowrap;
+    padding: 20px 15px;
+}
+
+.Item_action {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}

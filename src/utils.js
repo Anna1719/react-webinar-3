@@ -50,3 +50,13 @@ export const generateCode1 = (function (start = 0) {
 export function generateCode2() {
   return generateCode2.value ? ++generateCode2.value : (generateCode2.value = 1);
 }
+
+/**
+ *Вычисление общей стоимости корзины
+ * @returns {Number}
+ */
+ export function getCartPrice(cart) {
+  return cart.reduce(function (curr, added) {
+    return curr + added.price * added.count;
+  }, 0);
+}

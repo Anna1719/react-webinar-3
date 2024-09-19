@@ -1,5 +1,29 @@
 .Controls {
   display: flex;
   justify-content: flex-end;
+  border-bottom: 1px dashed #cccccc;
+  align-items: center;
   padding: 20px;
+}
+
+.Button_cart {
+  cursor: pointer;
+  width: 76px;
+}
+
+.List_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.List_wrapper div:last-child {
+  padding-left: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.List_wrapper div:first-child {
+  font-size: 18px;
 }
