@@ -14,7 +14,7 @@ function Controls({ cart = [], toggleCart = () => {} }) {
         {!!cart?.length && (
           <div>
             {cart.length}{" "}
-            {`${plural(cart.length, { one: "товар", few: "товарa", many: "товаров",})}`} / {getCartPrice(cart)} ₽
+            {`${plural(cart.length, { one: "товар", few: "товарa", many: "товаров",})}`} / {getCartPrice(cart).toLocaleString()} ₽
           </div>
         )}
       </div>

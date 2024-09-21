@@ -43,14 +43,16 @@ class Store {
   /**
    * Добавление товара в корзину
    */
-  addToCart(item) {
-    if (this.state.cart.find(curr => curr.code === item.code)) {
+  addToCart(code) {
+    const listItem = this.state.list.find(item => item.code === code);
+    const cartItem = this.state.cart.find(item => item.code === code);
+    if (cartItem) {
       this.setState({...this.state, cart: this.state.cart.map(curr =>
-        curr.code === item.code ? { ...curr, count: curr.count + 1 } : curr,
+        curr.code === code ? { ...curr, count: curr.count + 1 } : curr,
         ),
       });
     } else {
-      this.setState({...this.state, cart: [...this.state.cart, { ...item, count: 1 }],
+      this.setState({...this.state, cart: [...this.state.cart, { ...listItem, count: 1 }],
       });
     }
   }

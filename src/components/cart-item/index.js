@@ -7,7 +7,7 @@ function CartItem({ item, onDeleteItem = () => {} }) {
     <div className="Cart_item" key={item.code}>
         <div className="Item_code">{item.code}</div>
         <div className="Item_name">{item.title}</div>
-        <div className="Item_price">{item.price} ₽ </div>
+        <div className="Item_price">{item.price.toLocaleString()} ₽ </div>
         <div className="Item_count">{item.count} шт </div>
         <div className="Item_action">
           <button onClick={() => onDeleteItem(item.code)}>Удалить</button>

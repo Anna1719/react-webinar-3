@@ -4,6 +4,7 @@ import Controls from './components/controls';
 import Cart from './components/cart'
 import Head from './components/head';
 import PageLayout from './components/page-layout';
+import Modal from './components/modal'
 
 /**
  * Приложение
@@ -13,13 +14,13 @@ import PageLayout from './components/page-layout';
 function App({ store }) {
   const list = store.getState().list;
   const cart = store.getState().cart;
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const callbacks = {
 
     toggleCart: useCallback(() => 
-      setIsCartOpen(!isCartOpen), 
-      [isCartOpen]
+      setIsModalOpen(!isModalOpen), 
+      [isModalOpen]
     ),
 
     onCartAddItem: useCallback(
@@ -49,12 +50,13 @@ function App({ store }) {
         list={list}
         onCartAddItem={callbacks.onCartAddItem}
       />
+      <Modal isModalOpen={isModalOpen} >
        <Cart
         cart={cart}
         onDeleteItem={callbacks.onDeleteItem}
-        isCartOpen={isCartOpen}
         toggleCart={callbacks.toggleCart}
       />
+      </Modal>
     </PageLayout>
   );
 }

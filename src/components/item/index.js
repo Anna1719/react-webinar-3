@@ -6,7 +6,7 @@ import './style.css';
 function Item({ item, onCartAddItem = () => {} }) {
 
   const handleAddItem = () => {
-    onCartAddItem(item);
+    onCartAddItem(item.code);
   };
 
   return (
