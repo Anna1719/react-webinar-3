@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { plural } from '../../utils';
 import './style.css';
 
 function Item({ item, onCartAddItem = () => {} }) {
@@ -26,7 +25,6 @@ Item.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
-    count: PropTypes.number,
   }).isRequired,
   onCartAddItem: PropTypes.func,
 };

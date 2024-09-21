@@ -9,3 +9,26 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+.Modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 960px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+  
+.Modal_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    background-color: #f5f5f5;
+    margin: 0 0 70px 0;
+    font-size: 32px;
+}
+  
+.Modal_name {
+    font-weight: 600;
+}  

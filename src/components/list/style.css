@@ -4,3 +4,30 @@
 .List-item {
   border-bottom: 1px dashed #ccc;
 }
+
+.Cart_summary {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 100px 20px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 70px;
+}
+
+.Cart_price{
+  display: flex;
+  justify-content: space-between;
+  min-width: 100px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.Cart_price span {
+  margin-right: 80px;
+}
+
+.Cart_empty{
+  padding: 18px;
+  text-align: center;
+}

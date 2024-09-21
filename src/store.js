@@ -1,5 +1,3 @@
-import { generateCode } from './utils';
-
 /**
  * Хранилище состояния приложения
  */
@@ -41,6 +39,17 @@ class Store {
   }
 
   /**
+   * Вычисление общей стоимости корзины
+   */
+  calculateCartTotalPrice(){
+    let totalPrice = 0;
+    for (let item of this.state.cart) {
+      totalPrice += item.price * item.count;
+    }
+    return totalPrice;
+  }
+
+  /**
    * Добавление товара в корзину
    */
   addToCart(code) {
@@ -55,6 +64,11 @@ class Store {
       this.setState({...this.state, cart: [...this.state.cart, { ...listItem, count: 1 }],
       });
     }
+    
+    this.setState({...this.state,
+      unique: this.state.cart.length,
+      total: this.calculateCartTotalPrice(),
+    });
   }
 
   /**
@@ -63,7 +77,12 @@ class Store {
   deleteCartItem(code) {
     this.setState({
       ...this.state,
-      cart: this.state.cart.filter(item => item.code !== code),
+      cart: [...this.state.cart.filter(item => item.code !== code)],
+    });
+
+    this.setState({...this.state,
+      unique: this.state.cart.length,
+      total: this.calculateCartTotalPrice(),
     });
   }
 }

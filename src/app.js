@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import List from './components/list';
 import Controls from './components/controls';
-import Cart from './components/cart'
 import Head from './components/head';
 import PageLayout from './components/page-layout';
 import Modal from './components/modal'
@@ -15,6 +14,8 @@ function App({ store }) {
   const list = store.getState().list;
   const cart = store.getState().cart;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const unique = store.getState().unique;
+  const total = store.getState().total;
 
   const callbacks = {
 
@@ -45,16 +46,20 @@ function App({ store }) {
       <Controls 
         cart={cart} 
         toggleCart={callbacks.toggleCart}
+        uniqueItems={unique}
+        totalPrice={total}
       />
       <List
         list={list}
-        onCartAddItem={callbacks.onCartAddItem}
+        onButtonPress={callbacks.onCartAddItem}
+        isCart={false}
       />
-      <Modal isModalOpen={isModalOpen} >
-       <Cart
-        cart={cart}
-        onDeleteItem={callbacks.onDeleteItem}
-        toggleCart={callbacks.toggleCart}
+      <Modal isModalOpen={isModalOpen} modalName={"Корзина"} toggleModal={callbacks.toggleCart}>
+      <List
+        list={cart}
+        onButtonPress={callbacks.onDeleteItem}
+        isCart={true}
+        totalPrice={total}
       />
       </Modal>
     </PageLayout>

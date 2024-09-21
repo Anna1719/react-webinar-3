@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./style.css";
 import { getCartPrice, plural } from "../../utils";
 
-function Controls({ cart = [], toggleCart = () => {} }) {
+function Controls({ cart = [], toggleCart = () => {}, uniqueItems, totalPrice}) {
   return (
     <div className="Controls">
       <div className="List_wrapper">
@@ -13,8 +13,8 @@ function Controls({ cart = [], toggleCart = () => {} }) {
         )}
         {!!cart?.length && (
           <div>
-            {cart.length}{" "}
-            {`${plural(cart.length, { one: "товар", few: "товарa", many: "товаров",})}`} / {getCartPrice(cart).toLocaleString()} ₽
+            {uniqueItems}{" "}
+            {`${plural(cart.length, { one: "товар", few: "товарa", many: "товаров",})}`} / {totalPrice.toLocaleString()} ₽
           </div>
         )}
       </div>
@@ -26,6 +26,8 @@ function Controls({ cart = [], toggleCart = () => {} }) {
 Controls.propTypes = {
   cart: PropTypes.array,
   toggleCart: PropTypes.func,
+  uniqueItems: PropTypes.number,
+  totalPrice: PropTypes.number,
 };
 
 export default React.memo(Controls);
