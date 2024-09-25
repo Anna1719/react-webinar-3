@@ -27,8 +27,6 @@ function Product() {
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
   }
 
-  console.log("id",id);
-
   useEffect(() => {
    (async () => {
       const response = await fetch(`/api/v1/articles/${id}?fields=*,madeIn(title,code),category(title)`);
@@ -36,7 +34,7 @@ function Product() {
       setProductData(json.result);
       setIsLoading(false);
     })()     
-  }, [])
+  }, [id])
 
 
   return (
