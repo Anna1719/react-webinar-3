@@ -1,0 +1,27 @@
+.ProdDescr {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+}
+
+.ProdDescr-content {
+    padding-bottom: 20px;
+}
+
+.ProdDescr-content:last-child{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.ProdDescr-content-title{
+    margin-right: 8px;
+} 
+
+.ProdDescr-content-description {
+    font-weight: 700;
+}
+
+.ProdDescr-content-button {
+    width: 76px;
+    height: 21px;
+}

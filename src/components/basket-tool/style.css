@@ -6,6 +6,12 @@
   font-size: 18px;
 }
 
+.BasketTool-home {
+  flex: 1;
+  color: #0087E9;
+  text-decoration: underline;
+}
+
 .BasketTool-label {
 }
 
