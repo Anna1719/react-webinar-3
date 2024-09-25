@@ -1,0 +1,48 @@
+.Pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.Pagination-inactive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 18px;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.Pagination-inactive:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 18px;
+    font-size: 16px;
+    line-height: 18px;
+    background: #E1E1E1;
+}
+
+.Pagination-active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 18px;
+    font-size: 16px;
+    line-height: 18px;
+    background: #0087E9;
+    color: #ffffff;
+    border: none;
+}

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import Item from '../../components/item';
 import PageLayout from '../../components/page-layout';
 import Head from '../../components/head';
@@ -6,16 +6,25 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
+import Pagination from '../../components/pagination';
 
 function Main() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  }
+
   const store = useStore();
 
   useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
+    store.actions.catalog.load(itemsPerPage, (currentPage - 1) * itemsPerPage);
+  }, [currentPage]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,
+    total: state.catalog.count,
     amount: state.basket.amount,
     sum: state.basket.sum,
   }));
@@ -41,6 +50,7 @@ function Main() {
       <Head title="Магазин" />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
       <List list={select.list} renderItem={renders.item} />
+      <Pagination total={Math.ceil(select.total/10)} current={currentPage} onPageChange={(page) => onPageChange(page)} />
     </PageLayout>
   );
 }
