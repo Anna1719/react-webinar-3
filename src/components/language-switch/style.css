@@ -1,0 +1,19 @@
+.Language{
+    display: flex;
+    padding-right: 20px;
+}
+
+.Language-inactive {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.Language-active {
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #ff000d;
+    font-weight: bold;
+}
