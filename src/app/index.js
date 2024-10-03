@@ -6,6 +6,7 @@ import Basket from './basket';
 import Article from './article';
 import Login from './login';
 import Profile from './profile';
+import { Navigate, useLocation } from "react-router-dom";
 
 /**
  * Приложение
@@ -14,13 +15,34 @@ import Profile from './profile';
 function App() {
   const activeModal = useSelector(state => state.modals.name);
 
+  const ProtectedRoute = ({ children }) => {
+    const select = useSelector(state => ({
+      token: state.user.token,
+      user: state.user.userData,
+    }));
+
+    let location = useLocation();
+
+    if (!select.token) {
+      return <Navigate to="/login" state={{ from: location }} replace />;
+    }
+    return children;
+  };
+
   return (
     <>
       <Routes>
         <Route path={''} element={<Main />} />
         <Route path={'/articles/:id'} element={<Article />} />
-        <Route path={'/login'} element={<Login/>}/>
-        <Route path={'/profile'} element={<Profile />} />
+        <Route path={'/login'} element={<Login />} />
+        <Route
+          path={'/profile'}
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       {activeModal === 'basket' && <Basket />}

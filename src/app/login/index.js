@@ -20,6 +20,7 @@ function Login() {
 
   const select = useSelector(state => ({
     error: state.user.error,
+    wait: state.user.wait,
   }));
 
   const [info, setInfo] = useState({
@@ -34,7 +35,8 @@ function Login() {
 
     onSubmit: useCallback((e) => {
         e.preventDefault();
-        store.actions.user.Login(info.login, info.password, navigate("/profile"))}, [info]),
+        store.actions.user.Login(info.login, info.password, () => navigate("/profile")),
+        [info]}),
   };
 
   return (

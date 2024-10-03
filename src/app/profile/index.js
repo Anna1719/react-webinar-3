@@ -25,13 +25,11 @@ function Profile() {
     getUser: useCallback(() => store.actions.user.getUser(), [store]),
   };
 
+
   console.log(select.token);
 
   useEffect(() => {
-    if (select.token === '') {
-      navigate('/login');
-    }
-    else {callbacks.getUser();}
+    callbacks.getUser();
   }, []);
 
   return (
