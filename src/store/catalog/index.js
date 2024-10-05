@@ -1,5 +1,4 @@
 import StoreModule from '../module';
-import { getTranformedArray } from '../../utils';
 
 /**
  * Состояние каталога - параметры фильтра и список товара
@@ -21,7 +20,6 @@ class CatalogState extends StoreModule {
       },
       count: 0,
       waiting: false,
-      categories: [{value: 'all', title: 'Все'}],
     };
   }
 
@@ -105,18 +103,6 @@ class CatalogState extends StoreModule {
         waiting: false,
       },
       'Загружен список товаров из АПИ',
-    );
-  }
-
-  async getCategories() {
-    const response = await fetch(`/api/v1/categories?fields=_id,title,parent(_id)&limit=*`);
-    const json = await response.json();
-    this.setState(
-      {
-        ...this.getState(),
-        categories: [{value: 'all', title: 'Все'}, ...getTranformedArray(json.result.items)],
-      },
-      'Загружены категории',
     );
   }
 }

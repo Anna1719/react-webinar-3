@@ -19,7 +19,7 @@ function SideLayout({ children, side, padding }) {
 SideLayout.propTypes = {
   children: PropTypes.node,
   side: PropTypes.oneOf(['start', 'end', 'between']),
-  padding: PropTypes.oneOf(['small', 'medium']),
+  padding: PropTypes.oneOf(['small', 'medium', 'small_underline']),
 };
 
 SideLayout.defaultProps = {};

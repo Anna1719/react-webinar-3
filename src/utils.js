@@ -40,40 +40,39 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
  * @param {{_id: string, title: string, parent?: { _id: string }}[]}  data
  * @returns
  */
-export const getTranformedArray = (data) => {
-  const result = []
 
-  const toList = (data) => {
-    const array = [];
-    const map = data.reduce((acc, item) => {
-      acc[item._id] = { _id: item._id, title: item.title, children: [] };
-      return acc;
-    }, {});
-  
-    data.forEach(item => {
-      if (item.parent) {
-        const parent = map[item.parent._id];
-        if (parent) {
-          parent.children.push(map[item._id]);
-        }
-      } else {
-        array.push(map[item._id]);
+export function toList(data){
+  const array = [];
+  const map = data.reduce((acc, item) => {
+    acc[item._id] = { _id: item._id, title: item.title, children: [] };
+    return acc;
+  }, {});
+
+  data.forEach(item => {
+    if (item.parent) {
+      const parent = map[item.parent._id];
+      if (parent) {
+        parent.children.push(map[item._id]);
       }
-    });
-    return array;
-  }
+    } else {
+      array.push(map[item._id]);
+    }
+  });
+  return array;
+}
 
-  const listArr = toList(data);
+export const getTranformedArray = (array, level) => {
+  const result = []
 
   const getDash = (array, level) => {
     for (const category of array) {
-      result.push({value: category._id, title: `${new Array(level).fill('-').join('')} ${category.title}`})
+      result.push({value: category._id, title: `${new Array(level).fill(' -').join('')} ${category.title}`})
       if (category.children) {
         getDash(category.children, level + 1);
       }
     }
   }
-  getDash(listArr, 0);
+  getDash(array, level);
 
   return result;
 }

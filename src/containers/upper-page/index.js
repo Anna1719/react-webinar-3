@@ -22,12 +22,11 @@ function UpperPage() {
 
     onSignOut: useCallback(() => {
       store.actions.user.logOut();
-      navigate('/');
     }, []),
   };
 
   return (
-    <SideLayout side="end" padding="small">
+    <SideLayout side="end" padding="small_underline">
       {select.auth ? <Link to="/profile">{select.user.name}</Link> : ''}
       {select.auth ? (
         <button onClick={callbacks.onSignOut}>{t('user.signOut')}</button>

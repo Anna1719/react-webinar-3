@@ -12,11 +12,11 @@ function ProfileCard(props) {
       <h2 className={cn('title')}>{t('profile.title')}</h2>
       <div className={cn('data')}>
         <div className={cn('label')}>{t('profile.name')}:</div>
-        <div className={cn('value')}>{props.data?.name}</div>
+        <div className={cn('value')}>{props.data?.profile?.name}</div>
       </div>
       <div className={cn('data')}>
         <div className={cn('label')}>{t('profile.phone')}:</div>
-        <div className={cn('value')}>{props.data?.phone}</div>
+        <div className={cn('value')}>{props.data?.profile?.phone}</div>
       </div>
       <div className={cn('data')}>
         <div className={cn('label')}>{t('profile.email')}:</div>

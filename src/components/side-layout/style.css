@@ -31,3 +31,8 @@
 .SideLayout-item {
   margin: 0 5px;
 }
+
+.SideLayout_padding_small_underline{
+  padding: 10px;
+  border-bottom: #DCDCDC 1px solid;
+}

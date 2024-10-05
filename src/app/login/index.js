@@ -6,17 +6,23 @@ import Navigation from '../../containers/navigation';
 import useTranslate from '../../hooks/use-translate';
 import useStore from '../../hooks/use-store';
 import useSelector from '../../hooks/use-selector';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from "react-router-dom";
 import { useState } from 'react';
 import UpperPage from '../../containers/upper-page';
 import SideLayout from '../../components/side-layout';
 import Input from '../../components/input';
 import FormFrame from '../../components/form-frame';
+import useInit from '../../hooks/use-init';
 
 function Login() {
   const store = useStore();
   const { t } = useTranslate();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useInit(() => {
+    store.actions.user.resetError();
+  })
 
   const select = useSelector(state => ({
     error: state.user.error,
@@ -35,8 +41,10 @@ function Login() {
 
     onSubmit: useCallback((e) => {
         e.preventDefault();
-        store.actions.user.Login(info.login, info.password, () => navigate("/profile")),
-        [info]}),
+        store.actions.user.Login(info.login, info.password,
+         () => navigate(-1)
+        ), [info, location.state];
+      }),
   };
 
   return (

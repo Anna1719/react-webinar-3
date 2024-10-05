@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo } from 'react';
 import PageLayout from '../../components/page-layout';
 import Head from '../../components/head';
 import LocaleSelect from '../../containers/locale-select';
@@ -6,31 +6,22 @@ import Navigation from '../../containers/navigation';
 import useTranslate from '../../hooks/use-translate';
 import useStore from '../../hooks/use-store';
 import useSelector from '../../hooks/use-selector';
-import { useNavigate } from 'react-router-dom';
 import UpperPage from '../../containers/upper-page';
 import ProfileCard from '../../components/profile-card';
+import useInit from '../../hooks/use-init';
 
 function Profile() {
-  const navigate = useNavigate();
   let store = useStore();
   const { t } = useTranslate();
 
+  useInit(() => {
+    store.actions.profile.load();
+  }, [t]);
+
   const select = useSelector(state => ({
-    token: state.user.token,
-    user: state.user.userData,
+    profile: state.profile.data,
+    wait: state.profile.wait,
   }));
-
-  
-  const callbacks = {
-    getUser: useCallback(() => store.actions.user.getUser(), [store]),
-  };
-
-
-  console.log(select.token);
-
-  useEffect(() => {
-    callbacks.getUser();
-  }, []);
 
   return (
     <PageLayout>
@@ -39,7 +30,7 @@ function Profile() {
         <LocaleSelect />
       </Head>
       <Navigation />
-        <ProfileCard data={select.user} />
+        <ProfileCard data={select.profile} />
     </PageLayout>
   );
 }

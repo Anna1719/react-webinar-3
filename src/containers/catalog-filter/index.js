@@ -5,7 +5,6 @@ import useSelector from '../../hooks/use-selector';
 import Select from '../../components/select';
 import Input from '../../components/input';
 import SideLayout from '../../components/side-layout';
-import { getTranformedArray } from "../../utils";
 
 /**
  * Контейнер со всеми фильтрами каталога
@@ -13,16 +12,16 @@ import { getTranformedArray } from "../../utils";
 function CatalogFilter() {
   const store = useStore();
 
+  useEffect(() => {
+    store.actions.categories.getCategories();
+  }, [store]);
+
   const select = useSelector(state => ({
     sort: state.catalog.params.sort,
     query: state.catalog.params.query,
     category: state.catalog.params.category,
-    categories: state.catalog.categories,
+    categories: state.categories.list,
   }));
-
-  useEffect(() => {
-    store.actions.catalog.getCategories();
-  }, [store]);
 
   const callbacks = {
     // Сортировка

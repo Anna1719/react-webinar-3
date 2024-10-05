@@ -1,4 +1,3 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import useSelector from '../hooks/use-selector';
 import Main from './main';
@@ -7,6 +6,9 @@ import Article from './article';
 import Login from './login';
 import Profile from './profile';
 import { Navigate, useLocation } from "react-router-dom";
+import useStore from '../hooks/use-store';
+import useInit from '../hooks/use-init';
+import ProtectedRoute from '../containers/protectedRoute';
 
 /**
  * Приложение
@@ -15,19 +17,11 @@ import { Navigate, useLocation } from "react-router-dom";
 function App() {
   const activeModal = useSelector(state => state.modals.name);
 
-  const ProtectedRoute = ({ children }) => {
-    const select = useSelector(state => ({
-      token: state.user.token,
-      user: state.user.userData,
-    }));
+  const store = useStore();
 
-    let location = useLocation();
-
-    if (!select.token) {
-      return <Navigate to="/login" state={{ from: location }} replace />;
-    }
-    return children;
-  };
+  useInit(async () => {
+    await store.actions.user.getUser();
+  })
 
   return (
     <>
@@ -38,9 +32,9 @@ function App() {
         <Route
           path={'/profile'}
           element={
-            <ProtectedRoute>
+             <ProtectedRoute path={'/login'}>
               <Profile />
-            </ProtectedRoute>
+             </ProtectedRoute> 
           }
         />
       </Routes>
