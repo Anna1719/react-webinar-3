@@ -1,0 +1,19 @@
+.UnauthComment {
+    display: flex;
+    padding-bottom: 30px;
+    font-size: 16px;
+}
+
+.UnauthComment-link {
+    color: #0087E9;
+}
+
+.UnauthComment-cancel {
+    text-decoration: underline;
+    color: #666666;
+    border: none;
+    background: none;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+}

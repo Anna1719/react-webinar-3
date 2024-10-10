@@ -20,5 +20,16 @@
   "auth.password": "Password",
   "auth.signIn": "Sign in",
   "session.signIn": "Sign In",
-  "session.signOut": "Sign Out"
+  "session.signOut": "Sign Out",
+  "comments.title": "Comments",
+  "comments.answer": "Comment",
+  "unauth.link": "Log in",
+  "unauth.answer": "to answer",
+  "unauth.comment": "to comment",
+  "comment.title.answer": "New answer",
+  "comment.title.comment": "New comment",
+  "comment.placeholder.answer": "My answer to",
+  "comment.send": "Send",
+  "comment.cancel": "Cancel",
+  "comment.placeholder.comment": "Text"
 }

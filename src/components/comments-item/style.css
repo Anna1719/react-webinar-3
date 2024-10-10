@@ -1,0 +1,41 @@
+.CommentsItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.CommentsItem-info {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.CommentsItem-name {
+    font-weight: 700;
+    color: #000;
+}
+
+.CommentsItem-date {
+    color: #666;
+}
+
+.CommentsItem-text {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+}
+
+.CommentsItem-button {
+    text-align: left;
+    font-size: 12px;
+    color: #0087e9;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}

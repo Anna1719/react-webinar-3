@@ -1,0 +1,25 @@
+.CommentField {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 12px;
+    padding-bottom: 30px;
+}
+
+.CommentField-title {
+    font-weight: 700;
+}
+
+.CommentField-textarea {
+    min-height: 76px;
+}
+
+.CommentField-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.CommentField-textarea::placeholder {
+    color: #000000;
+    font-size: 14px;
+}
