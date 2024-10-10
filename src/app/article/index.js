@@ -19,6 +19,9 @@ import Comments from '../../containers/comments';
 import CommentsLayout from '../../components/comments-layout';
 
 function Article() {
+
+  const { t, lang } = useTranslate();
+  
   const store = useStore();
 
   const dispatch = useDispatch();
@@ -30,7 +33,7 @@ function Article() {
     //store.actions.article.load(params.id);
     dispatch(articleActions.load(params.id));
     dispatch(commentsActions.load(params.id));
-  }, [params.id]);
+  }, [params.id, lang]);
 
   const select = useSelectorRedux(
     state => ({
@@ -42,8 +45,6 @@ function Article() {
     }),
     shallowequal,
   ); // Нужно указать функцию для сравнения свойства объекта, так как хуком вернули объект
-
-  const { t } = useTranslate();
 
   const auth = useSelector(state => state.session.exists);
 

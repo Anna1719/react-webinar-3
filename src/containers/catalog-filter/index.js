@@ -9,6 +9,8 @@ import treeToList from '../../utils/tree-to-list';
 import listToTree from '../../utils/list-to-tree';
 
 function CatalogFilter() {
+  const { t, lang } = useTranslate();
+
   const store = useStore();
 
   const select = useSelector(state => ({
@@ -40,17 +42,17 @@ function CatalogFilter() {
     // Варианты сортировок
     sort: useMemo(
       () => [
-        { value: 'order', title: 'По порядку' },
-        { value: 'title.ru', title: 'По именованию' },
-        { value: '-price', title: 'Сначала дорогие' },
-        { value: 'edition', title: 'Древние' },
+        { value: 'order', title: t('category.order') },
+        { value: 'title.ru', title: t('category.name') },
+        { value: '-price', title: t('category.price') },
+        { value: 'edition', title: t('category.old') },
       ],
-      [],
+      [lang],
     ),
     // Категории для фильтра
     categories: useMemo(
       () => [
-        { value: '', title: 'Все' },
+        { value: '', title: t('category.all') },
         ...treeToList(listToTree(select.categories), (item, level) => ({
           value: item._id,
           title: '- '.repeat(level) + item.title,
@@ -59,8 +61,6 @@ function CatalogFilter() {
       [select.categories],
     ),
   };
-
-  const { t } = useTranslate();
 
   return (
     <SideLayout padding="medium">
