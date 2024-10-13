@@ -4,12 +4,12 @@ import { cn as bem } from '@bem-react/classname';
 import { formatDate } from '../../utils/format-date';
 import './style.css';
 
-function CommentsItem({ comment, onReply, t }) {
+function CommentsItem({ comment, onReply, t, userName }) {
   const cn = bem('CommentsItem');
   return (
     <div className={cn()}>
       <div className={cn('info')}>
-        <div className={cn('name')}>{comment.author?.profile?.name}</div>
+        <div className={comment.author?.profile?.name === userName ? cn('currentName') : cn('name')}>{comment.author?.profile?.name}</div>
         <div className={cn('date')}>{formatDate(comment.dateCreate)}</div>
       </div>
       <div className={cn('text')}>{comment.text}</div>

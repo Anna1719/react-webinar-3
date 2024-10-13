@@ -17,6 +17,11 @@
     color: #000;
 }
 
+.CommentsItem-currentName {
+    font-weight: 700;
+    color: #666666;
+}
+
 .CommentsItem-date {
     color: #666;
 }
@@ -25,6 +30,7 @@
     font-weight: 400;
     font-size: 14px;
     color: #000;
+    overflow-wrap: break-word;
 }
 
 .CommentsItem-button {

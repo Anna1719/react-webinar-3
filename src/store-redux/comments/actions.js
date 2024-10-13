@@ -20,7 +20,7 @@ export default {
    * Добавление комментария
    */
 
-  add: comment => {
+  add: (comment, userName) => {
     return async (dispatch, getState, services) => {
         dispatch({type: 'comments/add-start'});
       try {
@@ -29,7 +29,7 @@ export default {
           url: `/api/v1/comments`,
           body: JSON.stringify(comment),
         });
-        dispatch({ type: 'comments/add-success', payload: res.data.result });
+        dispatch({ type: 'comments/add-success', payload:{ ... res.data.result, author: { profile: { name: userName } } }});
       } catch (e) {
         console.error({ e });
         dispatch({ type: 'comments/add-error' });

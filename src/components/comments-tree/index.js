@@ -4,30 +4,49 @@ import { cn as bem } from '@bem-react/classname';
 import CommentsItem from '../comments-item';
 import UnauthComment from '../unauth-comment';
 import CommentForm from '../comment-form';
+import { findLastChildID } from '../../utils/findLastChildID';
 
-function CommentsTree({ comment, currentComment, onCommOpen, onSubmit, onCancel, auth, t }) {
+function CommentsTree({
+  comments,
+  currentComment,
+  onCommOpen,
+  onSubmit,
+  onCancel,
+  auth,
+  t,
+  userName,
+}) {
   const cn = bem('CommentTree');
 
-    return (
-      <div className={cn()}>
-        <div key={comment._id} style={{ marginLeft: (comment.level - 1)* 30 }}>
-        <CommentsItem comment={comment} onReply={id => onCommOpen(id)} t={t} />        
-              {auth && currentComment===comment._id && (
-                <CommentForm
-                  onSubmit={text => onSubmit(text, comment._id)}
-                  onCancel={onCancel}
-                  placeholder={`${comment.author.profile.name}`}
-                  isAnswer={true}
-                  t={t}
-                />
-              )}
-              {!auth && currentComment===comment._id && (
-                <UnauthComment showButton={true} onCancel={onCancel} t={t} />
-              )}
-            </div>
-      </div>
-    );
+  const lastChildId = findLastChildID(comments, currentComment);
 
+  const maxLevelIndent = 15;
+
+  return (
+    <div className={cn()}>
+      {!!comments.length && comments.map(comment => (
+        <>
+      <div
+        key={comment._id}
+        style={{ marginLeft: comment.level < maxLevelIndent + 1 ? (comment.level - 1) * 30 : maxLevelIndent * 30 }}
+      >
+        <CommentsItem comment={comment} onReply={id => onCommOpen(id)} t={t} userName={userName} />
+      </div>
+        {auth && lastChildId === comment._id && (
+          <CommentForm
+            onSubmit={text => onSubmit(text, currentComment)}
+            onCancel={onCancel}
+            isAnswer={true}
+            t={t}
+          />
+        )}
+        {!auth && currentComment === comment._id && (
+          <UnauthComment showButton={true} onCancel={onCancel} t={t} />
+        )}
+        </>
+      ))}
+    </div>
+  );
 }
 
 CommentsTree.propTypes = {
